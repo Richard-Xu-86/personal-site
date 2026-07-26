@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const groups = [
+  {
+    title: 'Hobbies',
+    icon: 'dumbbell',
+    items: [
+      'Working out: I love to stay fit and maintain a better work life balance',
+      'Gaming: Occasionally I like to spend time with friends and family through multiplayer games',
+      'Reading: I try to read the news and keep up with major acitvities around the world....'
+    ],
+  },
+  {
+    title: 'Music',
+    icon: 'music',
+    items: [
+      'Genres: [Hip-Hop / Chinese R&B / Rap — edit to taste]',
+      'On repeat: Likely a single song found on tiktok'
+    ],
+  },
+  {
+    title: 'Sports',
+    icon: 'activity',
+    items: [
+      'Play: Basketball, Pickleball, Badminton',
+      'Watch: World Cup, NBA Playoffs'
+    ],
+  },
+  {
+    title: 'Stocks',
+    icon: 'trending',
+    items: [
+      'I lose a lot of money in the market, usually to 0DTE options...'
+    ],
+  },
+];
+---
+
+<Layout title="Interests · Richard Xu" description="A few things Richard is into outside of work.">
+  <div class="wrap">
+    <header class="site-header">
+      <a href="/" class="wordmark">Richard Xu</a>
+      <nav class="site-nav">
+        <a href="/#experience">Experience</a>
+        <a href="/#projects">Projects</a>
+        <a href="/interests">Interests</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <span class="eyebrow">Off the clock</span>
+      <h1>A few things I'm into.</h1>
+      <p>
+        My Interests:
+      </p>
+    </section>
+
+    {
+      groups.map((g) => (
+        <section>
+          <h2><Icon name={g.icon} /> {g.title}</h2>
+          {g.items.map((item) => (
+            <div class="simple-row">
+              <Icon name={g.icon} />
+              <span>{item}</span>
+            </div>
+          ))}
+        </section>
+      ))
+    }
+
+    <footer>
+      &copy; {new Date().getFullYear()} Richard Xu · <a href="/">Back home</a>
+    </footer>
+  </div>
+</Layout>

@@ -1,0 +1,302 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const experience = [
+  {
+    icon: 'activity',
+    role: 'AI Engineering Intern',
+    org: 'Magical',
+    place: 'Toronto, ON',
+    date: 'May 2026 – Present',
+    stack: 'TypeScript · Node.js · Express · Redis/Upstash',
+    blurb:
+      'Building production healthcare-claims automations with Typescript, Node.js, Express, and Redis/Upstash, wiring EHR and CRM workflows into Gmail and Slack. Sped up full-dataset CSV exports ~20x and built a Slack-based error-alerting system for the claims pipeline.',
+  },
+  {
+    icon: 'dollar',
+    role: 'Software Engineering Intern',
+    org: 'Autumn',
+    place: 'New York, NY (Startup)',
+    date: 'Jan. 2026 – April. 2026',
+    stack: 'Next.js · Strapi (Node.js) · PostgreSQL',
+    blurb:
+      'Building the MVP for a full-stack pricing and workflow platform with Next.js, Strapi, and PostgreSQL, designing backend APIs and data models for dynamic pricing across 15,000+ U.S. funeral homes.',
+  },
+  {
+    icon: 'wifi',
+    role: 'AI/ML Research Intern',
+    org: 'Western University',
+    place: 'London, ON',
+    date: 'May 2025 – Aug. 2025',
+    stack: 'Python · Stable-Baselines3 · Gymnasium · Flask · React',
+    blurb:
+      'Built a Wi-Fi optimization platform with a PPO reinforcement-learning agent (Stable-Baselines3, Gymnasium) that dynamically switches access points to cut latency, jitter, and packet loss, then benchmarked it in a Flask + React experimentation platform across 50+ episodes.',
+  },
+];
+
+const projects = [
+  {
+    icon: 'chat',
+    name: 'Slack AI Digester',
+    date: 'Apr. 2026',
+    stack: 'JavaScript · Node.js · Express · Claude API',
+    blurb:
+      "Turns noisy engineering Slack channels into phase-aware digests for three different team personas. Requests generate in parallel with Promise.allSettled(), so one persona failing doesn't take the rest down with it.",
+    demo: 'slack',
+  },
+  {
+    icon: 'cart',
+    name: 'eBay Deal Finder',
+    date: 'Jul. – Aug. 2025',
+    stack: 'Python · Django · eBay Browse API',
+    blurb:
+      "A Django app that queries live listings across the US, Canadian, and UK eBay marketplaces and ranks them by price or review quality, so cross-border comparison shopping doesn't mean twelve open tabs.",
+    demo: 'ebay',
+  },
+];
+---
+
+<Layout title="Richard Xu">
+  <div class="wrap">
+    <header class="site-header">
+      <a href="/" class="wordmark">Richard Xu</a>
+      <nav class="site-nav">
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="/interests">Interests</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-top">
+        <svg class="avatar" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M31,56 C29,34 46,17 65,19 C86,21 99,39 96,59 C94,78 78,93 60,93 C41,93 33,75 31,56 Z" />
+          <path d="M36,24 C41,9 51,7 56,17" />
+          <path d="M51,19 C56,7 66,5 71,15" />
+          <path d="M66,21 C73,9 83,9 86,19" />
+          <path d="M48,53 C50,49 54,49 56,53" />
+          <path d="M69,53 C71,49 75,49 77,53" />
+          <path d="M62,56 C63,61 63,65 60,67" />
+          <path d="M50,73 C56,81 68,81 74,73" />
+        </svg>
+        <div class="hero-content">
+          <span class="eyebrow">Software engineer/AI Engineer/FDE Engineer · Toronto</span>
+          <h1>Hey, I'm Richard.</h1>
+          <p>
+            I'm a current software engineering student at <strong>Western University</strong>,
+            pursuing a dual degree with <strong>Ivey HBA</strong>,
+            mostly because I like being busy.
+          </p>
+        </div>
+      </div>
+      <p>
+        I like building small things that fix a real annoyance, 
+        a Slack digest bot, a deal-finder that
+        saves me from opening six marketplace tabs, and what I am working on right now: an app that documents your fridge and makes recipes.
+      </p>
+    </section>
+
+    <section id="experience">
+      <h2><Icon name="activity" /> Experience</h2>
+      {
+        experience.map((e) => (
+          <div class="list-item">
+            <div class="list-row">
+              <Icon name={e.icon} />
+              <span class="row-title">{e.role} · {e.org}</span>
+              <span class="row-fill" />
+              <span class="row-date">{e.date}</span>
+            </div>
+            <p class="row-place">{e.place}</p>
+            <p class="row-stack"><span class="row-meta">{e.stack}</span></p>
+            <p>{e.blurb}</p>
+          </div>
+        ))
+      }
+    </section>
+
+    <section id="projects">
+      <h2><Icon name="chat" /> Projects</h2>
+      {
+        projects.map((p) => (
+          <div class="list-item">
+            <div class="list-row">
+              <Icon name={p.icon} />
+              <span class="row-title">{p.name}</span>
+              <span class="row-fill" />
+              <span class="row-date">{p.date}</span>
+            </div>
+            <p><span class="row-meta">{p.stack}</span></p>
+            <p>{p.blurb}</p>
+
+            {p.demo === 'slack' && (
+              <details class="demo-toggle">
+                <summary>Try the demo</summary>
+                <div class="demo-panel" data-demo="slack">
+                  <p class="demo-lead">Pick a persona to generate a sample digest from the same engineering thread:</p>
+                  <div class="persona-row">
+                    <button class="chip" data-persona="lead">Engineering Lead</button>
+                    <button class="chip" data-persona="pm">Product Manager</button>
+                    <button class="chip" data-persona="new">New Hire</button>
+                  </div>
+                  <div class="demo-output" data-output>
+                    <span class="demo-placeholder">Pick a persona above ↑</span>
+                  </div>
+                </div>
+              </details>
+            )}
+
+            {p.demo === 'ebay' && (
+              <details class="demo-toggle">
+                <summary>Try the demo</summary>
+                <div class="demo-panel" data-demo="ebay">
+                  <div class="demo-search-row">
+                    <input type="text" data-query placeholder="Try “Nintendo Switch”, “iPhone 13”, “AirPods Pro”…" />
+                    <button data-action="search">Search</button>
+                  </div>
+                  <div class="sort-row">
+                    Rank by:
+                    <button class="chip active" data-sort="price">Price</button>
+                    <button class="chip" data-sort="rating">Rating</button>
+                  </div>
+                  <div class="demo-results" data-results></div>
+                  <p class="demo-hint" data-hint></p>
+                </div>
+              </details>
+            )}
+          </div>
+        ))
+      }
+    </section>
+
+    <section id="contact">
+      <h2><Icon name="mail" /> Contact</h2>
+      <div class="contact-list">
+        <a href="mailto:richardxu11111@gmail.com">richardxu11111@gmail.com</a>
+        <a href="https://github.com/Richard-Xu-86" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/richard-xu-/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF)</a>
+      </div>
+    </section>
+
+    <footer>
+      &copy; {new Date().getFullYear()} Richard Xu
+    </footer>
+  </div>
+
+  <script>
+    const personaData: Record<string, string> = {
+      lead: "**Shipped:** Checkout redesign backend merged to main, feature-flagged at 10% traffic.\n**In progress:** Payment-retry edge cases, ETA Thursday.\n**Blocked:** iOS build failing on the new SDK — QA on mobile can't start until it's fixed.\n**Risk:** Full rollout likely slips to next sprint.",
+      pm: "Checkout redesign is code-complete and live to 10% of users. Mobile is blocked on a build issue (fix in progress). Full rollout is trending toward next week rather than this Friday — flagging in case it affects the launch announcement.",
+      new: "Quick context: the team's mid-way through a checkout redesign. The backend part is done and slowly rolling out. There's a small blocker on the iOS build a senior eng is already looking into. No action needed from you — just background for standup.",
+    };
+
+    document.querySelectorAll<HTMLButtonElement>('[data-persona]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const panel = btn.closest('.demo-panel');
+        if (!panel) return;
+        panel.querySelectorAll('[data-persona]').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        const output = panel.querySelector('[data-output]');
+        if (!output) return;
+        output.innerHTML = '<span class="loading">Generating digest…</span>';
+        setTimeout(() => {
+          const text = personaData[btn.dataset.persona || ''] || '';
+          output.innerHTML = text
+            .split('\n')
+            .map((line) => '<p>' + line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') + '</p>')
+            .join('');
+        }, 550);
+      });
+    });
+
+    type Deal = { title: string; market: string; price: number; rating: number };
+    const dealSets: Record<string, { label: string; items: Deal[] }> = {
+      switch: {
+        label: 'Nintendo Switch OLED',
+        items: [
+          { title: 'Nintendo Switch OLED — White', market: '🇺🇸', price: 279.99, rating: 4.8 },
+          { title: 'Nintendo Switch OLED Model', market: '🇬🇧', price: 259.0, rating: 4.6 },
+          { title: 'Switch OLED Console Bundle', market: '🇨🇦', price: 299.99, rating: 4.9 },
+          { title: 'Switch OLED (Used — Like New)', market: '🇺🇸', price: 219.5, rating: 4.3 },
+        ],
+      },
+      iphone: {
+        label: 'iPhone 13',
+        items: [
+          { title: 'iPhone 13 128GB Unlocked', market: '🇺🇸', price: 469.0, rating: 4.7 },
+          { title: 'iPhone 13 Midnight 128GB', market: '🇨🇦', price: 499.99, rating: 4.5 },
+          { title: 'iPhone 13 (Refurb, Excellent)', market: '🇬🇧', price: 439.0, rating: 4.4 },
+          { title: 'iPhone 13 256GB', market: '🇺🇸', price: 519.0, rating: 4.8 },
+        ],
+      },
+      airpods: {
+        label: 'AirPods Pro',
+        items: [
+          { title: 'AirPods Pro (2nd Gen)', market: '🇺🇸', price: 179.99, rating: 4.8 },
+          { title: 'AirPods Pro w/ MagSafe Case', market: '🇬🇧', price: 189.0, rating: 4.6 },
+          { title: 'AirPods Pro (Renewed)', market: '🇨🇦', price: 139.99, rating: 4.2 },
+          { title: 'AirPods Pro 2', market: '🇺🇸', price: 169.0, rating: 4.9 },
+        ],
+      },
+    };
+
+    document.querySelectorAll<HTMLElement>('[data-demo="ebay"]').forEach((panel) => {
+      const input = panel.querySelector<HTMLInputElement>('[data-query]');
+      const searchBtn = panel.querySelector<HTMLButtonElement>('[data-action="search"]');
+      const sortBtns = panel.querySelectorAll<HTMLButtonElement>('[data-sort]');
+      const results = panel.querySelector('[data-results]');
+      const hint = panel.querySelector('[data-hint]');
+      let currentSet = 'switch';
+      let currentSort = 'price';
+
+      function pickSet(query: string) {
+        const q = query.toLowerCase();
+        if (q.includes('iphone')) return 'iphone';
+        if (q.includes('airpod')) return 'airpods';
+        return 'switch';
+      }
+
+      function render() {
+        const set = dealSets[currentSet];
+        const items = [...set.items].sort((a, b) =>
+          currentSort === 'price' ? a.price - b.price : b.rating - a.rating
+        );
+        if (results) {
+          results.innerHTML = items
+            .map(
+              (it) =>
+                '<div class="deal-card"><span class="deal-flag">' + it.market + '</span>' +
+                '<span class="deal-title">' + it.title + '</span>' +
+                '<span class="deal-price">$' + it.price.toFixed(2) + '</span>' +
+                '<span class="deal-rating">★ ' + it.rating + '</span></div>'
+            )
+            .join('');
+        }
+        if (hint) {
+          hint.textContent = 'Showing demo results for "' + set.label + '" — try "iPhone 13" or "AirPods Pro"';
+        }
+      }
+
+      searchBtn?.addEventListener('click', () => {
+        currentSet = pickSet(input?.value || '');
+        render();
+      });
+      input?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') searchBtn?.click();
+      });
+      sortBtns.forEach((b) => {
+        b.addEventListener('click', () => {
+          sortBtns.forEach((x) => x.classList.remove('active'));
+          b.classList.add('active');
+          currentSort = b.dataset.sort || 'price';
+          render();
+        });
+      });
+
+      render();
+    });
+  </script>
+</Layout>
