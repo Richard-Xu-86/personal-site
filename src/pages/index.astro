@@ -37,6 +37,15 @@ const experience = [
 
 const projects = [
   {
+    icon: 'trending',
+    name: 'ViewGuessr',
+    date: 'Aug. 2026',
+    stack: 'Web app · Game design · Multiplayer',
+    blurb:
+      'A fast-paced YouTube view-guessing game where players estimate how many views a trending video has and compete on accuracy. Built this month as a lightweight daily challenge with solo and multiplayer modes.',
+    link: 'https://view-guessr.com/',
+  },
+  {
     icon: 'chat',
     name: 'Slack AI Digester',
     date: 'Apr. 2026',
@@ -130,6 +139,9 @@ const projects = [
             </div>
             <p><span class="row-meta">{p.stack}</span></p>
             <p>{p.blurb}</p>
+            {p.link && (
+              <p><a href={p.link} target="_blank" rel="noopener noreferrer">view-guessr.com</a></p>
+            )}
 
             {p.demo === 'slack' && (
               <details class="demo-toggle">
