@@ -42,7 +42,9 @@ const projects = [
     date: 'Sept. – Oct. 2026',
     stack: 'TypeScript · TanStack Start · Supabase (PostgreSQL) · Stripe Webhooks',
     blurb:
-      "Built the backend that automates order fulfillment for a live e-commerce site, replacing manual delivery. A signed Stripe webhook triggers the pipeline: Postgres reserves inventory atomically with row locks (FOR UPDATE SKIP LOCKED), so concurrent orders can never claim the same item. It then calls a third-party provider API under a per-product price ceiling and posts the delivery into the customer's encrypted order chat. Duplicate webhooks reuse the existing claim instead of double-fulfilling, refunded orders are blocked from fulfillment, and orders that arrive when stock is out wait in an admin queue and restart automatically when stock is added. Covered by tests that mock the provider API.",
+      "Automated order fulfillment end to end, replacing a fully manual process. Built a Stripe webhook pipeline with row-locked inventory reservation in Postgres, so concurrent orders never claim the same item. Made fulfillment idempotent against duplicate webhooks, blocked refunded orders from going out, and added an out-of-stock queue that resumes automatically on restock. Integrated a third-party provider API that delivers orders straight into the customer's chat.",
+    link: 'https://dealhunt.se/',
+    linkLabel: 'dealhunt.se',
   },
   {
     icon: 'server',
