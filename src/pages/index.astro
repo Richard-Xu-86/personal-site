@@ -37,6 +37,24 @@ const experience = [
 
 const projects = [
   {
+    icon: 'dollar',
+    name: 'DealHunt SE · Order Fulfillment Backend',
+    date: 'Sept. – Oct. 2026',
+    stack: 'TypeScript · TanStack Start · Supabase (PostgreSQL) · Stripe Webhooks',
+    blurb:
+      "Built the backend that automates order fulfillment for a live e-commerce site, replacing manual delivery. A signed Stripe webhook triggers the pipeline: Postgres reserves inventory atomically with row locks (FOR UPDATE SKIP LOCKED), so concurrent orders can never claim the same item. It then calls a third-party provider API under a per-product price ceiling and posts the delivery into the customer's encrypted order chat. Duplicate webhooks reuse the existing claim instead of double-fulfilling, refunded orders are blocked from fulfillment, and orders that arrive when stock is out wait in an admin queue and restart automatically when stock is added. Covered by tests that mock the provider API.",
+  },
+  {
+    icon: 'server',
+    name: 'LLM Gateway',
+    date: 'Sept. 2026',
+    stack: 'TypeScript · Node.js · Hono · SQLite · WebSockets · React',
+    blurb:
+      'An authenticating proxy for the OpenAI API that streams responses back byte-for-byte while logging every request off the hot path, plus a live dashboard for inspecting the traffic. Logs ship asynchronously to a separate backend, so the logging side can never slow down or break a caller, and each API key only ever sees its own traffic. Backed by 89 tests.',
+    link: 'https://github.com/Richard-Xu-86/llmGateway',
+    linkLabel: 'GitHub',
+  },
+  {
     icon: 'trending',
     name: 'ViewGuessr',
     date: 'Aug. 2026',
@@ -44,6 +62,7 @@ const projects = [
     blurb:
       'A fast-paced YouTube view-guessing game where players estimate how many views a trending video has and compete on accuracy. Built this month as a lightweight daily challenge with solo and multiplayer modes.',
     link: 'https://view-guessr.com/',
+    linkLabel: 'view-guessr.com',
   },
   {
     icon: 'chat',
@@ -140,7 +159,7 @@ const projects = [
             <p><span class="row-meta">{p.stack}</span></p>
             <p>{p.blurb}</p>
             {p.link && (
-              <p><a href={p.link} target="_blank" rel="noopener noreferrer">view-guessr.com</a></p>
+              <p><a href={p.link} target="_blank" rel="noopener noreferrer">{p.linkLabel}</a></p>
             )}
 
             {p.demo === 'slack' && (
